@@ -18,6 +18,11 @@
             <Color x:Key="electric">#eed535</Color>
             <Color x:Key="ground">#ab9842</Color>
             <Color x:Key="water">#4592c4</Color>
+            <Color x:Key="normal">#a4a4a4</Color>
+            <Color x:Key="dark">#707070</Color>
+            <Color x:Key="rock">#a38c21</Color>
+            <Color x:Key="steel">#9eb7b8</Color>
+            <Color x:Key="fight">#d56723</Color>
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="White"></Setter>
                 <Setter Property="VisualStateManager.VisualStateGroups">

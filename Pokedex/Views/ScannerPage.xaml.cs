@@ -47,7 +47,7 @@ namespace Pokedex.Views
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"CapturePhotoAsync THREW: {ex.Message}");
+                DisplayAlert("Erro", ex.StackTrace, "cancelar");
             }
         }
 
@@ -75,15 +75,17 @@ namespace Pokedex.Views
                     }
 
                     await RemoverLoading();
-                    DisplayAlert("Erro", "Não foi possivel identificar o pokemon.", "Cancelar");
+                    DisplayAlert("Pokemon não identificado", "Não foi possivel identificar o pokemon.", "Ok");
                     return;
                 }
-                
+                DisplayAlert("Pokemon não identificado", "Não foi possivel identificar o pokemon.", "Ok");
+
                 await RemoverLoading();
             }
             catch(Exception ex)
             {
                 Console.WriteLine(ex);
+                DisplayAlert("Erro", ex.StackTrace, "cancelar");
             }
 
         }

@@ -62,18 +62,23 @@ namespace Pokedex.Services
                 if (response.IsSuccessStatusCode)
                 {
                     return JsonConvert.DeserializeObject<Payload>(await response.Content.ReadAsStringAsync()).predictions;
-                    
+
+                }
+                else
+                {
+                    throw new Exception(); 
                 }
                 return null;
 
             }catch(JsonException ex)
             {
                 Console.WriteLine("Erro ao converter json." + ex);
-                return null;
-            }catch(Exception ex)
+                throw ex;
+            }
+            catch(Exception ex)
             {
                 Console.WriteLine("Erro ao obter predição." + ex);
-                return null;
+                throw ex;
             }
            
         }
