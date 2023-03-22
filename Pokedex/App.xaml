@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:extensions="clr-namespace:Pokedex.Extensions"
+             x:Class="Pokedex.App">
+    <!--
+        Define global resources and styles here, that apply to all pages in your app.
+    -->
+    <Application.Resources>
+        <ResourceDictionary>
+            <extensions:ColorConverter x:Key="ColorConverter"/>
+            <Color x:Key="Primary">#2196F3</Color>
+            <Color x:Key="poison">#b97fc9</Color>
+            <Color x:Key="grass">#9bcc50</Color>
+            <Color x:Key="fire">#fd7d24</Color>
+            <Color x:Key="psychic">#f366b9</Color>
+            <Color x:Key="ice">#51c4e7</Color>
+            <Color x:Key="flying">#3dc7ef</Color>
+            <Color x:Key="electric">#eed535</Color>
+            <Color x:Key="ground">#ab9842</Color>
+            <Color x:Key="water">#4592c4</Color>
+            <Style TargetType="Button">
+                <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#332196F3" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+        </ResourceDictionary>        
+    </Application.Resources>
+</Application>

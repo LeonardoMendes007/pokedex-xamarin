@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Pokedex.Views.LoadingView.LoadingPage"
+             BackgroundColor="Transparent">
+
+    
+    <Grid>
+        <BoxView x:Name="bvBlackScreen" Color="Black" Opacity="0.5" IsVisible="true"/>
+        <ActivityIndicator x:Name="actCircle" Color="White" IsVisible="true" IsRunning="true" Scale="0.5"/>
+    </Grid>
+</ContentPage>

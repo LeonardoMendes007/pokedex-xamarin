@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:Pokedex.ViewModels" xmlns:model="clr-namespace:Pokedex.Models"
+             x:Class="Pokedex.Views.PokemonDetailPage"
+             Title="{Binding Title}">
+
+    <Grid>
+        <Image x:Name="imgPokemon" Source="pokebola_apagada.png" Aspect="AspectFit"/>
+        <ScrollView>
+            <Grid>
+                <StackLayout Padding="15">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="160"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                        </Grid.ColumnDefinitions>
+                        <Frame HasShadow="True" OutlineColor="#424242" Grid.Row="0" Grid.Column="0">
+                            <Image Source="{Binding Pokemon.Sprites.Other.OfficialArtwork.FrontDefault}" Aspect="Fill"/>
+                        </Frame>
+                        <Label x:Name="lbName" Text="{Binding Pokemon.Name}" Margin="5,0,0,0" FontSize="Large" TextColor="#424242" FontAttributes="Bold" Grid.Row="0" Grid.Column="1"/>
+                        <Grid Margin="5" Grid.Row="0" Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Height:" FontSize="Medium" TextColor="#424242" FontAttributes="Bold" Grid.Row="5" Grid.Column="0"/>
+                            <Label x:Name="lbHeight" Text="{Binding Pokemon.GetHeightFormated}" FontSize="Medium"  TextColor="#424242" Grid.Row="6" Grid.Column="0"/>
+                            <Label Text="Weight:" FontSize="Medium" TextColor="#424242" FontAttributes="Bold" Grid.Row="5" Grid.Column="2"/>
+                            <Label x:Name="lbWeight" Text="{Binding Pokemon.GetWeightFormated}" FontSize="Medium" TextColor="#424242" Grid.Row="6" Grid.Column="2"/>
+                        </Grid>
+                    </Grid>
+                    <StackLayout Grid.Row="1">
+                        <Label Text="{Binding Pokemon.GetDescriptionWithAudio}"  FontSize="Medium" TextColor="#424242" FontAttributes="Bold"/>
+                    </StackLayout>
+                    <StackLayout Grid.Row="2">
+                        <Label Text="Type"  FontSize="Large" TextColor="#424242" FontAttributes="Bold"/>
+                        <CollectionView x:Name="typesListView" ItemsSource="{Binding Pokemon.Types}" ItemsLayout="HorizontalList" HeightRequest="35" >
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <RelativeLayout Margin="5,0,5,0">
+                                        <Frame Padding="30,5,30,5" CornerRadius="5" BackgroundColor="{Binding Type.Name, Converter={StaticResource ColorConverter}}" OutlineColor="{Binding Type.Name, Converter={StaticResource ColorConverter}}">
+                                            <Label Text="{Binding Type.Name}" TextColor="Black"  FontAttributes="Bold" FontSize="Medium" HorizontalTextAlignment="Center"/>
+                                        </Frame>
+                                    </RelativeLayout>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                        <Label Text="Abilities" FontSize="Large" TextColor="#424242" FontAttributes="Bold"/>
+                        <CollectionView x:Name="cvAbilitiesListView" ItemsSource="{Binding Pokemon.Abilities}" ItemsLayout="HorizontalList" HeightRequest="35">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <RelativeLayout Margin="5,0,5,0">
+                                        <Frame Padding="20,5,20,5" CornerRadius="5" OutlineColor="Black">
+                                            <Label Text="{Binding Ability.Name}" TextColor="Black"  FontAttributes="Bold" FontSize="Medium" HorizontalTextAlignment="Center"/>
+                                        </Frame>
+                                    </RelativeLayout>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
+                    <StackLayout Grid.Row="3" Background="evolutions.png">
+                        <Label Text="Evolutions" FontSize="Large" TextColor="#424242" FontAttributes="Bold"/>
+                        <CollectionView x:Name="cvEvolutionsListView" ItemsSource="{Binding Pokemon.Evolutions}" ItemsLayout="HorizontalList" HeightRequest="200" >
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <RelativeLayout Margin="5,0,5,0">
+                                        <StackLayout>
+                                            <Frame HasShadow="True" OutlineColor="#424242" CornerRadius="1000">
+                                                <ImageButton BackgroundColor="Transparent" Source="{Binding Sprites.Other.OfficialArtwork.FrontDefault}" Aspect="Fill" WidthRequest="100" HeightRequest="100"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type local:PokemonDetailViewModel}}, Path=PokemonTapped}"		
+                                            CommandParameter="{Binding .}"/>
+                                            </Frame>
+                                            <Label Text="{Binding Name}" TextColor="#424242" FontSize="Large" HorizontalTextAlignment="Center"/>
+                                        </StackLayout>
+                                    </RelativeLayout>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+    </Grid>
+
+</ContentPage>

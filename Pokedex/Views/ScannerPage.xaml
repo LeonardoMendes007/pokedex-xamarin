@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="Pokedex.Views.ScannerPage"
+             xmlns:vm="clr-namespace:Pokedex.ViewModels"
+             Title="Scanner">
+
+    
+    <Grid>
+        <Image x:Name="imgPokemon" Source="pokemon_wallpaper.jpg" Aspect="AspectFill"/>
+        <StackLayout Padding="0,0,0,70" Orientation="Vertical" VerticalOptions="End">
+            <Button x:Name="btScanner" HorizontalOptions="Center" FontFamily="Arial" Text="Scannear Pokemon" BackgroundColor="#424242" CornerRadius="10" Padding="15" FontSize="Medium" FontAttributes="Bold" Clicked="btScanner_Clicked" Grid.Row="1" Grid.Column="1"/>
+        </StackLayout>
+        
+    </Grid>
+    
+    
+</ContentPage>

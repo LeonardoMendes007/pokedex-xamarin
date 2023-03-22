@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Pokedex.Views.MeusPokemonsPage"
+             Title="{Binding Title}"
+             xmlns:local="clr-namespace:Pokedex.ViewModels"  
+             xmlns:model="clr-namespace:Pokedex.Models"  
+             x:Name="BrowseItemsPage">
+
+    <Grid Padding="5">
+        <Image Source="pokebola_apagada.png" Aspect="AspectFit"/>
+        <RefreshView x:Name="rvRefreshViewPokemon"  x:DataType="local:MeusPokemonsViewModel" Command="{Binding LoadPokemonsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+            <CollectionView x:Name="cvItemsListView"
+                ItemsSource="{Binding Pokemons}"
+                SelectionMode="None">
+                <CollectionView.ItemTemplate >
+                    <DataTemplate x:DataType="model:Pokemon" >
+                        <Frame Padding="2,10,2,0">
+                            <Frame CornerRadius="5"
+                               OutlineColor="{Binding Types[0].Type.Name, Converter={StaticResource ColorConverter}}" 
+                               BorderColor="{Binding Types[0].Type.Name, Converter={StaticResource ColorConverter}}"
+                               BackgroundColor="Transparent"
+                               Padding="0"
+                               HasShadow="True"
+                               >
+                                <StackLayout Orientation="Horizontal" Padding="5">
+                                    <Frame HasShadow="True" WidthRequest="80">
+                                        <Image Source="{Binding Sprites.Other.OfficialArtwork.FrontDefault}" Aspect="AspectFit"/>
+                                    </Frame>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Text="{Binding Name}" Grid.Row="0" Grid.Column="0"
+                            TextColor="#424242" 
+                            FontSize="Large" FontAttributes="Bold"/>
+                                        <StackLayout Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
+                                            <Label Text="Height:" 
+                            TextColor="#424242" Margin="0" Padding="0"
+                            FontSize="15" FontAttributes="Bold" />
+                                            <Label Text="{Binding GetHeightFormated}"
+                            TextColor="#424242" Margin="0" Padding="0"
+                            FontSize="15" />
+                                            <Label Text="Weight:"
+                            TextColor="#424242" 
+                            FontSize="15" Margin="3,0,0,0" FontAttributes="Bold" />
+                                            <Label Text="{Binding GetWeightFormated}"
+                            TextColor="#424242" 
+                            FontSize="15" />
+                                        </StackLayout>
+                                        <ScrollView Grid.Row="2" Padding="0" Margin="0" Grid.Column="0">
+                                            <Label Text="{Binding GetDescription}" TextColor="#424242" 
+                            FontSize="Small" />
+                                        </ScrollView>
+                                    </Grid>
+                                    
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer 
+                                    NumberOfTapsRequired="1"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:MeusPokemonsViewModel}}, Path=PokemonTapped}"		
+                                    CommandParameter="{Binding .}">
+                                        </TapGestureRecognizer>
+                                    </StackLayout.GestureRecognizers>
+                                    
+                                </StackLayout>
+                            </Frame>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+    </Grid>
+    
+</ContentPage>
